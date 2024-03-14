@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block content %} {% with messages =
+get_flashed_messages() %} {% if messages %}
+<ul class="flashes">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+<br />
+<a href="{{ url_for('strategies') }}">Back to your strategies</a>
+<h3>Strategy: {{ strat.name }}</h3>
+<h4>Buy: {{ strat.buy }}</h4>
+<h4>Hold: {{ strat.hold }}</h4>
+<h4>Sell: {{ strat.sell }}</h4>
+<a href="{{ url_for('edit_strategy', strat_id=strat._id) }}">Edit Strategy</a>
+{% endblock %}

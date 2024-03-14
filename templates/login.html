@@ -1,0 +1,54 @@
+{% extends "layout.html" %} 
+{% block content %}
+
+
+<div class="dark-mode" style="text-align: center;">
+  <!-- Assuming your logo is here, adjust the width and make sure to add alt text for accessibility -->
+  <img src="static/logo.jpeg" alt="Logo" style="width: 150px; margin-bottom: 20px;">
+
+  <h3 class="title">Leveling the Playing Field</h3> <!-- Welcome message -->
+
+  <div class="column is-4 is-offset-4">
+    <h3 class="title">Login</h3>
+    <div class="box" style="margin: auto; max-width: 800px; width: 80%; padding: 10px;">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="notification is-danger">{{ messages[0] }}</div>
+      {% endif %} {% endwith %}
+      <form method="POST" action="/login">
+        <div class="field">
+          <div class="control">
+            <input
+              class="w3-input w3-border"
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              autofocus=""
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input
+              class="w3-input w3-border"
+              type="password"
+              name="password"
+              placeholder="Your Password"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="checkbox">
+            <input type="checkbox" name="remember" />
+            Remember me
+          </label>
+        </div>
+        <a href="{{ url_for('register')}}">Don't have an account? Sign Up </a>
+        <br />
+        <button class="w3-button w3-black">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

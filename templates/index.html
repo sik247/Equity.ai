@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="logos-container">
+  <h1 class="title">Empowering Your Trades with Insight</h1>
+  <p class="subtitle">Predictive Analysis for March 2024 (Updated 3/1/2024)</p>
+  <div class="logos-grid">
+    <div class="card">
+      <a href="{{ url_for('model', model_id="amazon") }}" class="logo-link"><img src="../static/logos/amazon.png" alt="Amazon Logo" class="logo"></a>
+    </div>
+    <div class="card">
+      <a href="{{ url_for('model', model_id="apple") }}" class="logo-link"><img src="../static/logos/apple.png" alt="Apple Logo" class="logo"></a>
+    </div>
+    <div class="card">
+      <a href="{{ url_for('model', model_id="google") }}" class="logo-link"><img src="../static/logos/google.png" alt="Google Logo" class="logo"></a>
+    </div>
+    <div class="card">
+      <a href="{{ url_for('model', model_id="meta") }}" class="logo-link"><img src="../static/logos/meta.png" alt="Meta Logo" class="logo"></a>
+    </div>
+    <div class="card">
+      <a href="{{ url_for('model', model_id="nvda") }}" class="logo-link"><img src="../static/logos/nvda.png" alt="Nvidia Logo" class="logo"></a>
+    </div>
+  </div>
+
+  <h2 class="subtitle">Top Portfolio Managers</h2>
+  <div class="logos-grid">
+    <!-- Example card for a portfolio manager -->
+    <div class="card">
+      <a href="{{ url_for('portfolio_manager', manager_id="WarrenBuffet") }}" class="logo-link">
+        <img src="static/logos/warrenbuffet.jpeg" alt="Manager1 Logo" class="logo">
+      </a>
+    </div>
+    <!-- Repeat for each manager -->
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<style>
+  @media screen and (max-width: 760px) {
+    .navbar-menu {
+      display: none;
+    }
+
+    .navbar-burger {
+      display: block;
+    }
+
+    .navbar.is-active .navbar-menu {
+      display: block;
+    }
+  }
+</style>
+
+<section class="hero is-primary is-fullheight">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="{{ url_for('home') }}"> Logo </a>
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarMenuHeroA"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('home') }}" class="navbar-item"> Home </a>
+            <a href="{{ url_for('profile') }}" class="navbar-item"> Profile </a>
+            <a href="{{ url_for('logout') }}" class="navbar-item"> Logout </a>
+            <a href="{{ url_for('about') }}" class="navbar-item"> About </a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="navbar-item"> Login </a>
+            <a href="{{ url_for('register') }}" class="navbar-item">
+              Sign Up
+            </a>
+            <a href="{{ url_for('about') }}" class="navbar-item"> About </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const $navbarBurgers = Array.prototype.slice.call(
+        document.querySelectorAll(".navbar-burger"),
+        0
+      );
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(($el) => {
+          $el.addEventListener("click", () => {
+            const target = $el.dataset.target;
+            const $target = document.getElementById(target);
+
+            $el.classList.toggle("is-active");
+            $target.classList.toggle("is-active");
+          });
+        });
+      }
+    });
+  </script>
+</section>

@@ -1,0 +1,91 @@
+<head>
+  <style>
+    .flashes p {
+      background-color: #f2f4f6; 
+      border: 1px solid #ddd; 
+      padding: 1vh; 
+      border-radius: 0.5vh; 
+      display: inline-block; 
+      text-align: left; 
+      margin: 0vh 0vh 1.5vh;
+    }
+  </style>
+</head>
+{% extends "layout.html" %} {% block content %}
+<body>
+  <div class="card" style="margin-top: 30px">
+    <img
+      src="{{ url_for('static', filename=doc.logo) }}"
+      alt="companyLogo"
+      class="logo"
+    />
+  </div>
+  <img
+    src=" {{ url_for('static', filename=doc.graph) }}"
+    alt="graph"
+    class="graph"
+  />
+  {% for table in tables %} {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+  <h3 class="title">Predicted Closing Prices</h3>
+  <div class="box">
+    {{ df_html|safe }} <!-- Insert the HTML representation of the styled DataFrame here -->
+  </div>
+  <h3 class="title">Create Strategy</h3>
+  <div class="box">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="flashes">
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+    <form method="POST" action="{{ url_for('model', model_id=doc.model) }}">
+      <div class="field">
+        <div class="control">
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="strategy-name"
+            placeholder="Strategy Name"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="buy"
+            placeholder="Buy"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="hold"
+            placeholder="Hold"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="sell"
+            placeholder="Sell"
+          />
+        </div>
+      </div>
+
+      <button class="w3-button w3-black">Create Strategy</button>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

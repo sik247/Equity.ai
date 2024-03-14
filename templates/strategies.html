@@ -1,0 +1,32 @@
+<head>
+  <style>
+    .flashes p {
+      background-color: #f2f4f6; 
+      border: 1px solid #ddd; 
+      padding: 1vh; 
+      border-radius: 0.5vh; 
+      display: inline-block; 
+      text-align: left; 
+      margin: 2.6vh 0vh 0.6vh;
+    }
+  </style>
+</head>
+{% extends "layout.html" %} {% block content %}
+<body>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="flashes">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+  <h3>Your Strategies:</h3>
+  {% for strategy in strategies %} {% if strategy.name %}
+  <li>
+    <a href="{{ url_for('strategy', strat_id=strategy._id) }}"
+      >{{ strategy.name }}</a
+    >
+  </li>
+  {% endif %} {% endfor %}
+</body>
+{% endblock %}

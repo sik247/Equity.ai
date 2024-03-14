@@ -1,0 +1,34 @@
+{% extends "layout.html" %} 
+{% block content %}
+<head>
+  <style>
+    .flashes p {
+      background-color: #f2f4f6;
+      border: 1px solid #ddd;
+      padding: 1vh;
+      border-radius: 0.5vh;
+      display: inline-block;
+      text-align: left;
+      margin: 0vh 0vh 1.5vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" style="margin-top: 30px">
+    <img src="{{ url_for('static', filename=investor.logo) }}" alt="Investor Logo" class="logo" />
+  </div>
+
+  <h3 class="title">Portfolio Distribution</h3>
+  <div class="box">
+    <img src="{{ url_for('static', filename=investor.pie_chart) }}" alt="Portfolio Pie Chart" class="chart" />
+  </div>
+
+  <h3 class="title">Portfolio Details</h3>
+  <div class="box">
+    {{ investor.portfolio_table|safe }} <!-- Insert the HTML representation of the DataFrame here -->
+  </div>
+
+  <!-- Include any other content you want for the investor's profile -->
+
+</body>
+{% endblock %}
