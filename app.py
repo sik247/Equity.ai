@@ -288,38 +288,29 @@ def model_post(model_id):
     flash(strat_name + " added to strategies.")
     return redirect("/model/"+model_id)
 
+# Route for portfolio manager page
 @app.route('/portfolio_manager/<string:manager_id>')
 @login_required
 def portfolio_manager(manager_id):
-    # Your code to handle the portfolio manager's page here
-    # ...
-    """
-    Route for GET requests to the investor page
-    Displays the investor portfolio info
-    """
-    # Static mapping of investors to their resources
-    manager_id = {
+    manager_info = {
         "warren_buffett": {
             "logo": "static/logos/warrenbuffet.jpg",
             "pie_chart": "charts/warren_buffett_pie_chart.png",
             "holdings_csv": "data_retrieve/warren_buffett_portfolio.csv"
         },
-        # Add other investors here as needed
+        # Add other portfolio managers here as needed
     }
 
-    # Check if the investor_name exists in the predefined data
-    investor_info = portfolio_manager.get(manager_id)
-    if not investor_info:
-        # Handle the case where the investor is not found
+    manager_data = manager_info.get(manager_id)
+    if not manager_data:
         abort(404)
     
-    # Read the holdings CSV into a DataFrame
-    df = pd.read_csv(investor_info['holdings_csv'])
-
-    # Pass the data to the template
+    df = pd.read_csv(manager_data['holdings_csv'])
+    
+    # Pass the data and image URLs to the template
     return render_template(
         "portfolio_manager.html", 
-        investor=investor_info, 
+        investor=manager_data, 
         holdings_table=df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
     )
 
