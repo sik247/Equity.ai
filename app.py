@@ -293,10 +293,14 @@ def model_post(model_id):
 @login_required
 def portfolio_manager(manager_id):
     manager_info = {
-        "warren_buffett": {
+        "wb": {
             "logo": "static/logos/warrenbuffet.jpg",
-            "pie_chart": "charts/warren_buffett_pie_chart.png",
+            # "pie_chart": "charts/warren_buffett_pie_chart.png",
             "holdings_csv": "data_retrieve/warren_buffett_portfolio.csv"
+        },
+        "ba": {
+        "logo": "static/logos/Bill-Ackman.jpg",
+        "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
         },
         # Add other portfolio managers here as needed
     }
@@ -304,7 +308,7 @@ def portfolio_manager(manager_id):
     manager_data = manager_info.get(manager_id)
     if not manager_data:
         abort(404)
-    
+    #data_retrieve/warren_buffett_portfolio.csv
     df = pd.read_csv(manager_data['holdings_csv'])
     
     # Pass the data and image URLs to the template
@@ -313,7 +317,6 @@ def portfolio_manager(manager_id):
         investor=manager_data, 
         holdings_table=df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
     )
-
 
 @app.route('/about')
 def about():

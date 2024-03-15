@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # The URL of the page you want to scrape
-url = "https://valuesider.com/guru/warren-buffett-berkshire-hathaway/portfolio?page=1&sort=-percent_portfolio"
+url = "https://valuesider.com/guru/warren-buffett-berkshire-hathaway/portfolio?sort=-percent_portfolio&page=1"
 # Send a GET request to the webpage
 response = requests.get(url)
 

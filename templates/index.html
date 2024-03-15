@@ -25,8 +25,13 @@
   <div class="logos-grid">
     <!-- Example card for a portfolio manager -->
     <div class="card">
-      <a href="{{ url_for('portfolio_manager', manager_id="WarrenBuffet") }}" class="logo-link">
+      <a href="{{ url_for('portfolio_manager', manager_id="wb") }}" class="logo-link">
         <img src="static/logos/warrenbuffet.jpeg" alt="Manager1 Logo" class="logo">
+      </a>
+    </div>
+    <div class="card">
+      <a href="{{ url_for('portfolio_manager', manager_id="ba") }}" class="logo-link">
+        <img src="static/logos/Bill-Ackman.jpg" alt="Manager1 Logo" class="logo">
       </a>
     </div>
     <!-- Repeat for each manager -->
