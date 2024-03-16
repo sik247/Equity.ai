@@ -295,27 +295,40 @@ def portfolio_manager(manager_id):
     manager_info = {
         "wb": {
             "logo": "static/logos/warrenbuffet.jpg",
-            # "pie_chart": "charts/warren_buffett_pie_chart.png",
             "holdings_csv": "data_retrieve/warren_buffett_portfolio.csv"
         },
         "ba": {
-        "logo": "static/logos/Bill-Ackman.jpg",
-        "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
+            "logo": "static/logos/Bill-Ackman.jpg",
+            "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
         },
         # Add other portfolio managers here as needed
     }
 
     manager_data = manager_info.get(manager_id)
     if not manager_data:
-        abort(404)
-    #data_retrieve/warren_buffett_portfolio.csv
+        return "Manager not found", 404
+
     df = pd.read_csv(manager_data['holdings_csv'])
-    
+
+    # A formatter function that replaces zero with an empty string
+    def remove_zero(val):
+        return '' if val == 0 else val
+
+    # Apply the formatter to all elements in the DataFrame
+    formatters = {column: remove_zero for column in df.columns}
+
+    holdings_table_html = df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
+
+    # Prepare data for the pie chart (assuming 'Stock % of Portfolio' is a column in your DataFrame)
+    pie_chart_data = df[['Stock', '% of Portfolio']].to_dict(orient='records')
+
     # Pass the data and image URLs to the template
     return render_template(
-        "portfolio_manager.html", 
-        investor=manager_data, 
-        holdings_table=df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
+        "portfolio_manager.html",
+        
+        investor=manager_data,
+        holdings_table=holdings_table_html,
+        data=pie_chart_data  # Pass pie chart data here
     )
 
 @app.route('/about')

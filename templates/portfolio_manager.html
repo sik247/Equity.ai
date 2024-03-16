@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio Analysis</title>
-<!-- Include Bootstrap for styling -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<!-- Include Chart.js for pie chart -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- Custom styles -->
-<style>
-  /* Your CSS styles, you can use the provided styles or add new ones */
-</style>
+  <meta charset="UTF-8">
+  <title>Portfolio Analysis</title>
+  <!-- Include Bootstrap for styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Include Chart.js for pie chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom styles -->
+  <style>
+    /* Your CSS styles, you can use the provided styles or add new ones */
+  </style>
 </head>
 <body>
+  <div class="container mt-5">
+    <!-- Portfolio Header -->
+    <div class="jumbotron">
+      <h1 class="display-4">Portfolio Analysis</h1>
+      <p class="lead">A detailed look at the investment strategies of a renowned trader.</p>
+    </div>
 
-<div class="container mt-5">
-  <!-- Portfolio Header -->
-  <div class="jumbotron">
-    <h1 class="display-4">Portfolio Analysis</h1>
-    <p class="lead">A detailed look at the investment strategies of a renowned trader.</p>
+    <!-- Portfolio Table -->
+    <h2>Portfolio Details</h2>
+    <div>
+      {{ holdings_table | safe }}
+    </div>
+
+    <!-- Pie Chart -->
+    <h2>Portfolio Distribution</h2>
+    <canvas id="portfolioPieChart" width="400" height="400"></canvas>
+
+    <!-- Trader Description -->
+    <h2>Trader Tendencies</h2>
+    <p>Description of the trader's investment strategies and tendencies.</p>
+
+    <!-- Include scripts here -->
+    <script>
+      // JavaScript to read CSV, generate the table and pie chart
+      // Get the data from Flask
+      var data = {{ data | tojson | safe }};
+
+      // Extract the labels and values from the data
+      var labels = data.map(function(row) { return row['Stock']; });
+      var values = data.map(function(row) { return row['% of Portfolio']; });
+
+      // Create the pie chart
+      var ctx = document.getElementById('portfolioPieChart').getContext('2d');
+      var portfolioPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: [/* array of background colors for each segment */],
+            borderColor: [/* array of border colors for each segment */],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    </script>
   </div>
 
-  <!-- Portfolio Table -->
-  <h2>Portfolio Details</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Ticker</th>
-        <th scope="col">Company Name</th>
-        <th scope="col">% of Portfolio</th>
-        <th scope="col">Shares</th>
-        <th scope="col">Value</th>
-        <th scope="col">Change in Shares</th>
-        <th scope="col">Change in Portfolio</th>
-      </tr>
-    </thead>
-    <tbody id="portfolio-table">
-      <!-- Dynamically generated table rows from CSV data -->
-    </tbody>
-  </table>
-
-  <!-- Pie Chart -->
-  <h2>Portfolio Distribution</h2>
-  <canvas id="portfolioPieChart"></canvas>
-
-  <!-- Trader Description -->
-  <h2>Trader Tendencies</h2>
-  <p>Description of the trader's investment strategies and tendencies.</p>
-
-  <!-- Include scripts here -->
   <script>
-    // JavaScript to read CSV, generate the table and pie chart
+    // You can include JavaScript here that you would have in your separate .js file
   </script>
-</div>
-
-<script>
-  // You can include JavaScript here that you would have in your separate .js file
-</script>
-
 </body>
 </html>
