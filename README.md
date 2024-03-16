@@ -79,7 +79,7 @@ Upon launching the web application, users are greeted with the home screen, whic
 ## Prediction Interface 
 
 The prediction section of the application showcases the output of LSTM models for selected stocks. Users can view detailed forecasts, historical trends, and make informed decisions based on the AI-driven predictions.
-![Example Image](images/model.png "This is an example image")
+![Example Image](static/display/model.png "This is an example image")
 
 ## Contributing
 
