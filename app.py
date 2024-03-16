@@ -294,42 +294,50 @@ def model_post(model_id):
 def portfolio_manager(manager_id):
     manager_info = {
         "wb": {
+            "name": "Warren Buffet",
             "logo": "static/logos/warrenbuffet.jpg",
             "holdings_csv": "data_retrieve/warren_buffett_portfolio.csv"
         },
         "ba": {
+            "name": "Bill Ackman",
             "logo": "static/logos/Bill-Ackman.jpg",
             "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
         },
-        # Add other portfolio managers here as needed
-    }
+        }
+    
+    
+   # return render_template(
+    #     'portfolio_manager.html',
+    #     data=df[['Ticker', '% of Portfolio']].to_dict(orient='records'),
+    #     
+    #     investor=manager_data,
+    #     holdings_table=holdings_table_html
+    # )
+
+    # A formatter function that replaces zero with an empty string
+    def remove_zero(val):
+        return '' if val == 0 else val
+
+
+    #holdings_table_html = df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
 
     manager_data = manager_info.get(manager_id)
     if not manager_data:
         return "Manager not found", 404
 
     df = pd.read_csv(manager_data['holdings_csv'])
-
-    # A formatter function that replaces zero with an empty string
-    def remove_zero(val):
-        return '' if val == 0 else val
-
-    # Apply the formatter to all elements in the DataFrame
-    formatters = {column: remove_zero for column in df.columns}
-
+    df['% of Portfolio'] = df['% of Portfolio'].str.rstrip('%').astype('float') / 100.0
     holdings_table_html = df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
-
-    # Prepare data for the pie chart (assuming 'Stock % of Portfolio' is a column in your DataFrame)
-    pie_chart_data = df[['Stock', '% of Portfolio']].to_dict(orient='records')
 
     # Pass the data and image URLs to the template
     return render_template(
         "portfolio_manager.html",
-        
         investor=manager_data,
+        manager_name=manager_data['name'],
         holdings_table=holdings_table_html,
-        data=pie_chart_data  # Pass pie chart data here
+        data=df[['Ticker', '% of Portfolio']].to_dict(orient='records')
     )
+
 
 @app.route('/about')
 def about():
@@ -345,6 +353,7 @@ def handle_error(e):
     Output any errors
     """
     return render_template("error.html", error=e)
+
 
 
 if __name__ == '__main__':

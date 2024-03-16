@@ -6,11 +6,40 @@
   <!-- Include Bootstrap for styling -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- Include Chart.js for pie chart -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Custom styles -->
-  <style>
-    /* Your CSS styles, you can use the provided styles or add new ones */
-  </style>
+  <script defer>
+    window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title:{
+        text: "{{ manager_name }}'s Portfolio",
+        horizontalAlign: "left"
+      },
+      theme: "light2",
+      data: [{
+        type: "doughnut",
+        startAngle: 60,
+        //innerRadius: 60,
+        indexLabelFontSize: 17,
+        indexLabel: "{label} - #percent%",
+        toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+        dataPoints: [
+          {% for stock in data %}
+          { y: {{ stock['% of Portfolio'] }}, label: "{{ stock['Ticker'] }}" },
+          {% endfor %}
+        ]
+      }]
+    });
+    chart.render();
+    }
+
+    var data = {{ data | tojson | safe }};
+
+      // Extract the labels and values from the data
+    var labels = data.map(function(row) { return row['Stock']; });
+    var values = data.map(function(row) { return row['% of Portfolio']; });
+
+
+  </script>
 </head>
 <body>
   <div class="container mt-5">
@@ -25,48 +54,8 @@
     <div>
       {{ holdings_table | safe }}
     </div>
-
-    <!-- Pie Chart -->
-    <h2>Portfolio Distribution</h2>
-    <canvas id="portfolioPieChart" width="400" height="400"></canvas>
-
-    <!-- Trader Description -->
-    <h2>Trader Tendencies</h2>
-    <p>Description of the trader's investment strategies and tendencies.</p>
-
-    <!-- Include scripts here -->
-    <script>
-      // JavaScript to read CSV, generate the table and pie chart
-      // Get the data from Flask
-      var data = {{ data | tojson | safe }};
-
-      // Extract the labels and values from the data
-      var labels = data.map(function(row) { return row['Stock']; });
-      var values = data.map(function(row) { return row['% of Portfolio']; });
-
-      // Create the pie chart
-      var ctx = document.getElementById('portfolioPieChart').getContext('2d');
-      var portfolioPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: values,
-            backgroundColor: [/* array of background colors for each segment */],
-            borderColor: [/* array of border colors for each segment */],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
-    </script>
-  </div>
-
-  <script>
-    // You can include JavaScript here that you would have in your separate .js file
-  </script>
+  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+  <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+  
 </body>
-</html>
+</html> 
