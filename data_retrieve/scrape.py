@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # The URL of the page you want to scrape
-url = "https://valuesider.com/guru/warren-buffett-berkshire-hathaway/portfolio?sort=-percent_portfolio&page=1"
+url = "https://valuesider.com/guru/michael-burry-scion-asset-management/portfolio?sort=-percent_portfolio&page=1"
 # Send a GET request to the webpage
 response = requests.get(url)
 
@@ -40,8 +40,8 @@ if container:
     df = pd.DataFrame(data, columns=['Ticker', 'Stock', '% of Portfolio', 'Shares', 'Reported Price'])
 
     # Save the DataFrame to a CSV file
-    df.to_csv('warren_buffett_portfolio.csv', index=False)
+    df.to_csv('michael_burry_portfolio.csv', index=False)
 
-    print(f"Data scraped and saved to 'warren_buffett_portfolio.csv' successfully with {len(data)} records!")
+    print(f"Data scraped and saved to 'miachel_burry.csv' successfully with {len(data)} records!")
 else:
     print("The container with the specified class was not found.")

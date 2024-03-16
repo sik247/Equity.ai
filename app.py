@@ -303,6 +303,11 @@ def portfolio_manager(manager_id):
             "logo": "static/logos/Bill-Ackman.jpg",
             "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
         },
+        "bg": {
+            "name": "Bill Gates & Melinda Foundation",
+            "logo": "static/logos/MoS_BillGates_colorcutout.webp",
+            "holdings_csv": "data_retrieve/bill_gates_portfolio.csv"
+        },
         }
     
     
