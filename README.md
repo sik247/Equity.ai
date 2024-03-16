@@ -81,6 +81,8 @@ The prediction section of the application showcases the output of LSTM models fo
 
 ## Portfolio Interface
 Real-time insights into the strategies of top investors and institutional banks.
+![Example Image](static/display/portfolio.png"This is an example image")
+
 
 
 ## Contributing
