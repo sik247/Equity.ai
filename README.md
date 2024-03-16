@@ -1,14 +1,15 @@
-# Equity.AI: Empowering Retail Investors with AI
+# Equity.AI: Empowering Retail Investors with Data and Insights
 
 ## Overview
 
-ModelPy leverages advanced machine learning techniques, including Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM) networks, to offer retail investors predictive insights into stock market trends. By analyzing historical data, these models can uncover patterns and predict future price movements, providing users with a competitive edge in investment decisions.
+Equity.AI is an innovative platform designed to empower retail investors with predictive insights and data analytics through advanced machine learning models, including Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM) networks. By processing historical stock data, Equity.AI reveals patterns and forecasts future market movements, giving users a strategic advantage in their investment decisions.
 
 ## Key Features
 
-- **Predictive Analytics:** Use LSTM models for accurate stock price forecasts.
-- **Portfolio Optimization:** Employ machine learning to suggest optimal investment strategies.
-- **User-Friendly Interface:** Easy-to-use web application to access financial insights.
+- **Predictive Stock Analytics:** Harness the power of LSTM models for precise stock market forecasts.
+- **Investor Portfolio Insights:** Access real-time portfolios and investment strategies of top-performing investors.
+- **Interactive Data Visualization:** Engage with dynamic charts and graphs for an in-depth financial analysis.
+- **Strategic Investment Recommendations:** Benefit from AI-driven investment strategies tailored to your financial goals.
 
 ## Technology Stack
 
@@ -26,18 +27,15 @@ ModelPy leverages advanced machine learning techniques, including Recurrent Neur
 
 ### Prerequisites
 
-Before you begin, ensure you have met the following requirements:
 - Python 3.8 or higher
 - MongoDB
 - Flask
 
 ### Installation
 
-Clone the repository and install the required Python packages:
-
 ```bash
-git clone https://github.com/sik247/ModelPy.git
-cd ModelPy
+git clone https://github.com/yourusername/equity.ai.git
+cd equity.ai
 pip install -r requirements.txt
 ```
 
@@ -66,7 +64,7 @@ LSTMs are a type of RNN capable of learning order dependence in sequence predict
 
 ## Application's Goal
 
-ModelPy is designed to democratize access to sophisticated financial analytics, providing retail investors with tools previously available only to professionals. By integrating cutting-edge AI models, ModelPy levels the playing field, allowing users to make informed investment decisions based on robust data analysis.
+Equity.Ai is designed to democratize access to sophisticated financial analytics, providing retail investors with tools previously available only to professionals. By integrating cutting-edge AI models, ModelPy levels the playing field, allowing users to make informed investment decisions based on robust data analysis.
 
 
 
@@ -80,6 +78,10 @@ Upon launching the web application, users are greeted with the home screen, whic
 
 The prediction section of the application showcases the output of LSTM models for selected stocks. Users can view detailed forecasts, historical trends, and make informed decisions based on the AI-driven predictions.
 ![Example Image](static/display/model.png "This is an example image")
+
+## Portfolio Interface
+Real-time insights into the strategies of top investors and institutional banks.
+
 
 ## Contributing
 
