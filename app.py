@@ -295,7 +295,7 @@ def portfolio_manager(manager_id):
     manager_info = {
         "wb": {
             "name": "Warren Buffet",
-            "logo": "static/logos/warrenbuffet.jpg",
+            "logo": "static/logos/warrenbuffet.webp",
             "holdings_csv": "data_retrieve/warren_buffett_portfolio.csv"
         },
         "ba": {
@@ -304,7 +304,7 @@ def portfolio_manager(manager_id):
             "holdings_csv": "data_retrieve/bill_ackman_portfolio.csv"
         },
         "bg": {
-            "name": "Bill Gates & Melinda Foundation",
+            "name": "Bill and Melinda Gates Foundation",
             "logo": "static/logos/MoS_BillGates_colorcutout.webp",
             "holdings_csv": "data_retrieve/bill_gates_portfolio.csv"
         },
