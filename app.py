@@ -332,7 +332,7 @@ def portfolio_manager(manager_id):
 
     df = pd.read_csv(manager_data['holdings_csv'])
     df['% of Portfolio'] = df['% of Portfolio'].str.rstrip('%').astype('float') / 100.0
-    holdings_table_html = df.to_html(classes=["table-bordered", "table-striped", "table-hover"])
+    holdings_table_html = df.to_html(classes=["table-bordered", "table-striped", "table-hover"], index=False)
 
     # Pass the data and image URLs to the template
     return render_template(
