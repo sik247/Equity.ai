@@ -2,7 +2,7 @@
 
 ## Overview
 
-Equity.AI is an innovative platform designed to empower retail investors with predictive insights and data analytics through advanced machine learning models, including Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM) networks. By processing historical stock data, Equity.AI reveals patterns and forecasts future market movements, giving users a strategic advantage in their investment decisions.
+EquityAI is an innovative platform designed to empower retail investors with predictive insights and data analytics through advanced machine learning models, including Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM) networks. By processing historical stock data, EquityAI reveals patterns and forecasts future market movements, giving users a strategic advantage in their investment decisions.
 
 ## Key Features
 
