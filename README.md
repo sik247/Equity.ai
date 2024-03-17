@@ -1,4 +1,4 @@
-# Equity.AI: Empowering Retail Investors with Data and Insights
+# EquityAI: Empowering Retail Investors with Data and Insights
 
 ## Overview
 
