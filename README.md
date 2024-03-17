@@ -69,7 +69,7 @@ Equity.Ai is designed to democratize access to sophisticated financial analytics
 
 
 ## Home Interface 
-Upon launching the web application, users are greeted with the home screen, which displays the top 5 stocks and their predictions. This screen is designed to provide quick insights and easy navigation to detailed analyses.
+Upon launching the web application, users are greeted with the home screen, which displays selected top stocks and their predictions. This screen is designed to provide quick insights and easy navigation to detailed analyses. **Note:** You must be logged in to view this and subsequent pages. 
 
 
 ![Example Image](static/display/homescreen.png "This is an example image")
